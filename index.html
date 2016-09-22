@@ -1,0 +1,130 @@
+
+<!doctype html>
+<html>
+<head>
+    <title>Learning JQuery</title>
+
+    <meta charset="utf-8" />
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <script type="text/javascript" src="jquery.min.js"></script>
+
+    <style type="text/css">
+        
+        #wrapper {
+            width:600px;
+            margin: 0 auto;
+            font-family: helvetica;
+            font-size: 1.2em;
+        }
+
+        input {
+            border-radius: 6px;
+            width: 300px;
+            height: 30px;
+            padding: 5px;
+            font-size: 1.2em;
+            border-width: 2px;
+            border: 1px solid grey;
+            margin-bottom: 10px;
+
+        }
+
+        label {
+            width: 200px;
+            float: left;
+            padding-top: 10px;
+        }
+
+        #validationForm {
+            margin:20px;
+        }
+
+        #submitButton {
+            height: 50px;
+            margin-top: 30px;
+            margin-left: 100px;
+        }
+
+        #error {
+            height: 40px;
+            color: red;
+            font-size: 0.7em;
+        }
+
+    </style>
+       
+</head>
+
+<body>
+
+    <div id="wrapper">
+
+        <form id="validationForm">
+
+            <label for="email">Email</label>
+            <input id="email" name="email"/>
+
+            <label for="phone">Telephone</label>
+            <input id="phone" name="phone"/>
+
+            <label for="pass">Password</label>
+            <input id="pass" name="pass" type="password"/>
+
+            <label for="pass">Confirm Password</label>
+            <input id="confirmPass" name="confirmPass" type="password"/>
+
+            <input id="submitButton" value="Submit" type="submit"/>
+
+        </form>
+
+
+    </div>
+
+<script type="text/javascript">
+
+    $("#validationForm").submit(function(event) {
+        // body...
+
+        var errorMessage="";
+
+        event.preventDefault();
+        
+        function isValidEmailAddress(emailAddress) {
+            var pattern = /^([a-z\d!#$%&'*+\-\/=?^_`{|}~\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]+(\.[a-z\d!#$%&'*+\-\/=?^_`{|}~\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]+)*|"((([ \t]*\r\n)?[ \t]+)?([\x01-\x08\x0b\x0c\x0e-\x1f\x7f\x21\x23-\x5b\x5d-\x7e\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]|\\[\x01-\x09\x0b\x0c\x0d-\x7f\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]))*(([ \t]*\r\n)?[ \t]+)?")@(([a-z\d\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]|[a-z\d\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF][a-z\d\-._~\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]*[a-z\d\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])\.)+([a-z\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]|[a-z\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF][a-z\d\-._~\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]*[a-z\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])\.?$/i;
+            return pattern.test(emailAddress);
+
+        };  
+
+        // var emailvalue = document.getElementById('email').value;
+
+          var emailvalue = $("#email").val();
+
+            if (!isValidEmailAddress(emailvalue)) {
+                $("#email").css('border-color', 'red')
+            } else {
+                $("#email").css('border-color', 'grey')
+            }
+
+
+            if (!$.isNumeric($("#phone").val())) {
+                $("#phone").css('border-color', 'red')
+            } else {
+                $("#phone").css('border-color', 'grey')
+            }
+
+            if ($("#pass").val() !== $("#confirmPass").val()) {
+                $("#pass").css('border-color', 'red')
+            } else {
+                $("#pass").css('border-color', 'grey')
+            }
+
+
+
+    });
+
+</script>
+
+</body>
+</html>

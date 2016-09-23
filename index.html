@@ -100,24 +100,39 @@
         // var emailvalue = document.getElementById('email').value;
 
           var emailvalue = $("#email").val();
+          var count =0;
 
             if (!isValidEmailAddress(emailvalue)) {
                 $("#email").css('border-color', 'red')
+                count = 0;
             } else {
-                $("#email").css('border-color', 'grey')
+                $("#email").css('border-color', 'grey');
+                count++;
             }
 
 
             if (!$.isNumeric($("#phone").val())) {
                 $("#phone").css('border-color', 'red')
+                count = 0;
             } else {
-                $("#phone").css('border-color', 'grey')
+                $("#phone").css('border-color', 'grey');
+                count++;
             }
 
             if ($("#pass").val() !== $("#confirmPass").val()) {
-                $("#pass").css('border-color', 'red')
+                $("#pass").css('border-color', 'red');
+                $("#confirmPass").css('border-color', 'red');
+                count = 0;
             } else {
-                $("#pass").css('border-color', 'grey')
+                $("#pass").css('border-color', 'grey');
+                count++
+            }
+
+            if (count = 3) {
+                $("#email").css('border-color', 'green');
+                $("#phone").css('border-color', 'green');
+                $("#pass").css('border-color', 'green');
+                $("#confirmPass").css('border-color', 'green');
             }
 
 
